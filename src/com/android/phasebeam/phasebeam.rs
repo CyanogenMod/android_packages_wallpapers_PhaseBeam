@@ -17,6 +17,7 @@ rs_program_fragment fragDots;
 
 static int numBeamParticles;
 static int numDotParticles;
+static int numVertColors;
 
 typedef struct __attribute__((packed, aligned(4))) Particle {
     float3 position;
@@ -55,7 +56,7 @@ static float halfScreenHeight;
 static float newOffset = 0.5;
 static float oldOffset = 0.5;
 
-void positionParticles(){
+void positionParticles() {
     screenWidth = rsgGetWidth();
     screenHeight = rsgGetHeight();
     halfScreenWidth = screenWidth/2.0f;
@@ -64,24 +65,23 @@ void positionParticles(){
     quarterScreenHeight = screenHeight/4.0f;
     Particle_t* particle = dotParticles;
     numDotParticles = rsAllocationGetDimX(rsGetAllocation(dotParticles));
-    for(int i=0; i<numDotParticles; i++){
-
-
+    numVertColors = rsAllocationGetDimX(rsGetAllocation(vertexColors));
+    for(int i=0; i<numDotParticles; i++) {
         particle->position.x = rsRand(0.0f, 3.0f);
         particle->position.y = rsRand(-1.25f, 1.25f);
 
         float z;
-        if(i < 3){
+        if (i < 3) {
             z = 14.0f;
-        } if(i < 7){
+        } else if(i < 7) {
             z = 25.0f;
-        } else if(i < 4){
+        } else if(i < 4) {
             z = rsRand(10.f, 20.f);
-        } else if(i == 10){
+        } else if(i == 10) {
             z = 24.0f;
             particle->position.x = 1.0;
         } else {
-            z = rsRand(4.0f, 10.0f);
+            z = rsRand(6.0f, 14.0f);
         }
         particle->position.z = z;
         particle->offsetX = 0;
@@ -89,12 +89,11 @@ void positionParticles(){
         particle++;
     }
 
-
     Particle_t* beam = beamParticles;
     numBeamParticles = rsAllocationGetDimX(rsGetAllocation(beamParticles));
-    for(int i=0; i<numBeamParticles; i++){
+    for(int i=0; i<numBeamParticles; i++) {
         float z;
-        if(i < 20){
+        if(i < 20) {
             z = rsRand(4.0f, 10.0f)/2.0f;
         } else {
             z = rsRand(4.0f, 35.0f)/2.0f;
@@ -108,68 +107,59 @@ void positionParticles(){
     }
 }
 
-int root(){
+int root() {
 
     newOffset = xOffset*2;
     rsgClearColor(0.0f, 0.f, 0.f,1.0f);
 
-
-
-    VertexColor* vert = vertexColors;
-    for(int i=0; i<48; i++){
-        vert->offsetX = -xOffset/2.0;
-        vert++;
+    if(newOffset != oldOffset) {
+        VertexColor* vert = vertexColors;
+        for(int i=0; i<numVertColors; i++) {
+            vert->offsetX = -xOffset/2.0;
+            vert++;
+        }
     }
-
 
     rsgBindProgramVertex(vertBg);
     rsgBindProgramFragment(fragBg);
 
     rsgDrawMesh(gBackgroundMesh);
 
-
     Particle_t* beam = beamParticles;
     Particle_t* particle = dotParticles;
 
-    for(int i=0; i<numDotParticles; i++){
+    for(int i=0; i<numDotParticles; i++) {
 
-        if(newOffset==oldOffset){
-            if(beam->position.x/beam->position.z > 0.5){
+        if(newOffset==oldOffset) {
+            if(beam->position.x/beam->position.z > 0.5) {
                 beam->position.x = -1.0;
             }
-            if(particle->position.x/particle->position.z > 0.5){
+            if(particle->position.x/particle->position.z > 0.5) {
                 particle->position.x = -1.0;
             }
 
-            if(beam->position.y > 1.05){
+            if(beam->position.y > 1.05) {
                 beam->position.y = -1.05;
                 beam->position.x = rsRand(-1.25f, 1.25f);
             } else {
                 beam->position.y = beam->position.y + 0.000160*beam->position.z;
             }
-            if(particle->position.y > 1.25){
+            if(particle->position.y > 1.25) {
                 particle->position.y = -1.25;
                 particle->position.x = rsRand(0.0f, 3.0f);
 
             } else {
                 particle->position.y = particle->position.y + 0.00022*particle->position.z;
             }
-
-
         }
 
-
-
-
-        beam->position.x = beam->position.x + 0.0001010*beam->position.z;
+        beam->position.x = beam->position.x + 0.0001*beam->position.z;
         beam->offsetX = newOffset;
         beam++;
         particle->offsetX = newOffset;
         particle->position.x = particle->position.x + 0.0001560*beam->position.z;
         particle++;
     }
-
-
 
     rsgBindProgramVertex(vertDots);
     rsgBindProgramFragment(fragDots);
@@ -182,6 +172,6 @@ int root(){
 
     oldOffset = newOffset;
 
-    return 55;
+    return 66;
 
 }

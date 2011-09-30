@@ -20,7 +20,7 @@ public class PhaseBeamWallpaper extends WallpaperService {
     private class RenderScriptEngine extends Engine {
         private RenderScriptGL mRenderScript = null;
         private PhaseBeamRS mWallpaperRS = null;
-        private int densityDPI;
+        private int mDensityDPI;
 
         @Override
         public void onCreate(SurfaceHolder surfaceHolder) {
@@ -32,7 +32,7 @@ public class PhaseBeamWallpaper extends WallpaperService {
             DisplayMetrics metrics = new DisplayMetrics();
             ((WindowManager) getApplication().getSystemService(Service.WINDOW_SERVICE))
                     .getDefaultDisplay().getMetrics(metrics);
-            densityDPI = metrics.densityDpi;
+            mDensityDPI = metrics.densityDpi;
         }
 
         @Override
@@ -80,7 +80,7 @@ public class PhaseBeamWallpaper extends WallpaperService {
 
             if (mWallpaperRS == null) {
                 mWallpaperRS = new PhaseBeamRS();
-                mWallpaperRS.init(densityDPI, mRenderScript, getResources(), width, height);
+                mWallpaperRS.init(mDensityDPI, mRenderScript, getResources(), width, height);
                 mWallpaperRS.start();
             }
 
