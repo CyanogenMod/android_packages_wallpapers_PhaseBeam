@@ -9,7 +9,7 @@
 
     <application android:icon="@drawable/icon" android:label="@string/wallpaper_label">
         <service
-           	android:name=".PhaseBeamWallpaper"
+            android:name=".PhaseBeamWallpaper"
             android:label="@string/wallpaper_label"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
