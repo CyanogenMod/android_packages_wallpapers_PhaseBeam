@@ -27,7 +27,7 @@ public class PhaseBeamWallpaper extends WallpaperService {
             super.onCreate(surfaceHolder);
             setTouchEventsEnabled(true);
             surfaceHolder.setSizeFromLayout();
-            surfaceHolder.setFormat(PixelFormat.RGB_332);
+            surfaceHolder.setFormat(PixelFormat.OPAQUE);
 
             DisplayMetrics metrics = new DisplayMetrics();
             ((WindowManager) getApplication().getSystemService(Service.WINDOW_SERVICE))
