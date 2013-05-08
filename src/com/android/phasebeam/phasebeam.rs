@@ -63,11 +63,10 @@ void positionParticles() {
     halfScreenHeight = screenHeight/2.0f;
     quarterScreenWidth = screenWidth/4.0f;
     quarterScreenHeight = screenHeight/4.0f;
-    rs_allocation aParticles = rsGetAllocation(dotParticles);
+    Particle_t* particle = dotParticles;
     numDotParticles = rsAllocationGetDimX(rsGetAllocation(dotParticles));
     numVertColors = rsAllocationGetDimX(rsGetAllocation(vertexColors));
     for(int i=0; i<numDotParticles; i++) {
-        Particle_t* particle = (Particle_t *) rsGetElementAt(aParticles, i);
         particle->position.x = rsRand(0.0f, 3.0f);
         particle->position.y = rsRand(-1.25f, 1.25f);
 
@@ -86,6 +85,8 @@ void positionParticles() {
         }
         particle->position.z = z;
         particle->offsetX = 0;
+
+        particle++;
     }
 
     Particle_t* beam = beamParticles;
