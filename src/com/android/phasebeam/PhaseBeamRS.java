@@ -176,7 +176,9 @@ public class PhaseBeamRS {
     }
 
     private Allocation loadTexture(int id) {
-        final Allocation allocation = Allocation.createFromBitmapResource(mRS, mRes, id);
+        final Allocation allocation = Allocation.createFromBitmapResource(mRS, mRes, id,
+                                               Allocation.MipmapControl.MIPMAP_NONE,
+                                               Allocation.USAGE_GRAPHICS_TEXTURE);
         return allocation;
     }
 
