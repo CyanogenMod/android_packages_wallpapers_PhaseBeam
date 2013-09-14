@@ -17,5 +17,12 @@
             </intent-filter>
             <meta-data android:name="android.service.wallpaper" android:resource="@xml/wallpaper" />
         </service>
+
+        <activity
+            android:name="com.android.phasebeam.PhaseBeamSelector"
+            android:theme="@style/Transparent"
+            android:exported="true">
+        </activity>
+
     </application>
 </manifest>

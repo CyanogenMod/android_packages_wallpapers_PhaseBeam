@@ -22,6 +22,7 @@ static int numVertColors;
 typedef struct __attribute__((packed, aligned(4))) Particle {
     float3 position;
     float offsetX;
+    float3 adjust;
 } Particle_t;
 
 typedef struct VpConsts {
@@ -34,6 +35,8 @@ typedef struct VertexColor_s {
     float3 position;
     float offsetX;
     float4 color;
+    float4 realColor;
+    float3 adjust;
 } VertexColor;
 
 VertexColor* vertexColors;
@@ -43,6 +46,8 @@ rs_mesh dotMesh;
 rs_mesh beamMesh;
 rs_mesh gBackgroundMesh;
 
+float3 adjust = { -1.0, 1.0, 1.0 };
+float3 oldAdjust = { -1.0, 1.0, 1.0 };
 float densityDPI;
 float xOffset = 0.5;
 
@@ -91,6 +96,7 @@ void positionParticles() {
         }
         particle->position.z = z;
         particle->offsetX = 0;
+        particle->adjust = adjust;
     }
 
     Particle_t* beam = beamParticles;
@@ -107,6 +113,7 @@ void positionParticles() {
 
         beamParticles->position.z = z;
         beamParticles->offsetX = 0;
+        beamParticles->adjust = adjust;
         beamParticles++;
     }
 }
@@ -118,10 +125,22 @@ int root() {
     speedbump = newOffset != oldOffset ? 0.25 : 1.0;
     rsgClearColor(0.0f, 0.f, 0.f,1.0f);
 
-    if(newOffset != oldOffset) {
+    if(newOffset != oldOffset
+            || oldAdjust.x != adjust.x
+            || oldAdjust.y != adjust.y
+            || oldAdjust.z != adjust.z) {
         VertexColor* vert = vertexColors;
+        bool useAdjust = adjust.x >= 0;
         for(int i=0; i<numVertColors; i++) {
             vert->offsetX = -xOffset/2.0;
+            vert->realColor = vert->color;
+            if (useAdjust) {
+                float grey = 0.3 * vert->color.x + 0.59 * vert->color.y + 0.11 * vert->color.z;
+                vert->realColor.x = grey;
+                vert->realColor.y = grey;
+                vert->realColor.z = grey;
+            }
+            vert->adjust = adjust;
             vert++;
         }
     }
@@ -134,33 +153,38 @@ int root() {
     Particle_t* beam = beamParticles;
     Particle_t* particle = dotParticles;
 
-    for(int i=0; i<numDotParticles; i++) {
+    for (int i=0; i<numBeamParticles; i++) {
         if(beam->position.x/beam->position.z > 0.5) {
             beam->position.x = -1.0;
         }
-        if(particle->position.x/particle->position.z > 0.5) {
-            particle->position.x = -1.0;
-        }
-
         if(beam->position.y > 1.15) {
             beam->position.y = -1.15;
             beam->position.x = rsRand(-1.25f, 1.25f);
         } else {
-            beam->position.y = beam->position.y + yzBeamSpeed*beam->position.z*speedbump;
+            beam->position.y += yzBeamSpeed * beam->position.z * speedbump;
         }
+        beam->position.x += zxBeamSpeed * beam->position.z * speedbump;
+        beam->offsetX = newOffset;
+        beam->adjust = adjust;
+        beam++;
+    }
+
+    for(int i=0; i<numDotParticles; i++) {
+        if(particle->position.x/particle->position.z > 0.5) {
+            particle->position.x = -1.0;
+        }
+
         if(particle->position.y > 1.25) {
             particle->position.y = -1.25;
             particle->position.x = rsRand(0.0f, 3.0f);
 
         } else {
-            particle->position.y = particle->position.y + yzParticleSpeed*particle->position.z*speedbump;
+            particle->position.y += yzParticleSpeed * particle->position.z * speedbump;
         }
 
-        beam->position.x = beam->position.x + zxBeamSpeed*beam->position.z*speedbump;
-        beam->offsetX = newOffset;
-        beam++;
         particle->offsetX = newOffset;
-        particle->position.x = particle->position.x + zxParticleSpeed*beam->position.z*speedbump;
+        particle->position.x += zxParticleSpeed * beam->position.z * speedbump;
+        particle->adjust = adjust;
         particle++;
     }
 
@@ -174,7 +198,7 @@ int root() {
     rsgDrawMesh(dotMesh);
 
     oldOffset = newOffset;
+    oldAdjust = adjust;
 
     return 66 * speedbump;
-
 }

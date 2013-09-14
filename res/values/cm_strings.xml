@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enable_recoloring">Adjust beam colors</string>
+    <string name="color_label">Color</string>
+    <string name="saturation_label">Saturation</string>
+    <string name="brightness_label">Brightness</string>
+</resources>

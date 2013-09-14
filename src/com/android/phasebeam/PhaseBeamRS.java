@@ -3,6 +3,8 @@ package com.android.phasebeam;
 import static android.renderscript.Sampler.Value.NEAREST;
 import static android.renderscript.Sampler.Value.WRAP;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.renderscript.Allocation;
 import android.renderscript.Matrix4f;
@@ -29,7 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import android.util.Log;
 
-public class PhaseBeamRS {
+public class PhaseBeamRS implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static String LOG_TAG = "PhaseBeam";
     public static final int DOT_COUNT = 28;
     private Resources mRes;
@@ -51,12 +53,19 @@ public class PhaseBeamRS {
     private ScriptField_VertexColor_s mVertexColors;
 
     private int mDensityDPI;
+    private SharedPreferences mSharedPref;
+    private Context mContext;
 
     boolean mInited = false;
 
-    public void init(int dpi, RenderScriptGL rs, Resources res, int width, int height) {
+    public void init(Context context, int dpi, RenderScriptGL rs,
+            Resources res, int width, int height) {
         if (!mInited) {
             mDensityDPI = dpi;
+            mContext = context;
+            mSharedPref = mContext.getSharedPreferences(PhaseBeamSelector.KEY_PREFS,
+                    Context.MODE_PRIVATE);
+            mSharedPref.registerOnSharedPreferenceChangeListener(this);
 
             mRS = rs;
             mRes = res;
@@ -96,8 +105,35 @@ public class PhaseBeamRS {
             mRS.bindRootScript(mScript);
 
             mScript.invoke_positionParticles();
+            makeNewState();
+
             mInited = true;
         }
+    }
+
+    public void uninit() {
+        mSharedPref.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(PhaseBeamSelector.KEY_ENABLED)) {
+            loadTextures();
+        }
+        makeNewState();
+    }
+
+    private void makeNewState() {
+        Float3 adjust;
+        if (mSharedPref.getBoolean(PhaseBeamSelector.KEY_ENABLED, false)) {
+            adjust = new Float3(
+                    mSharedPref.getFloat(PhaseBeamSelector.KEY_HUE, 0.0f),
+                    mSharedPref.getFloat(PhaseBeamSelector.KEY_SATURATION, 1.0f),
+                    mSharedPref.getFloat(PhaseBeamSelector.KEY_BRIGHTNESS, 1.0f));
+        } else {
+            adjust = new Float3(-1.0f, 1.0f, 1.0f);
+        }
+        mScript.set_adjust(adjust);
     }
 
     private Matrix4f getProjectionNormalized(int w, int h) {
@@ -165,6 +201,7 @@ public class PhaseBeamRS {
             float blue = new Float(values[4]);
             mVertexColors.set_position(i, new Float3(xPos, yPos, 0.0f), false);
             mVertexColors.set_color(i, new Float4(red, green, blue, 1.0f), false);
+            mVertexColors.set_adjust(i, new Float3(-1.0f, 1.0f, 1.0f), false);
         }
         mVertexColors.copyAll();
 
@@ -183,8 +220,9 @@ public class PhaseBeamRS {
     }
 
     private void loadTextures() {
-        mDotAllocation = loadTexture(R.drawable.dot);
-        mBeamAllocation = loadTexture(R.drawable.beam);
+        boolean recolor = mSharedPref.getBoolean(PhaseBeamSelector.KEY_ENABLED, false);
+        mDotAllocation = loadTexture(recolor ? R.drawable.dot_grey : R.drawable.dot);
+        mBeamAllocation = loadTexture(recolor ? R.drawable.beam_grey : R.drawable.beam);
         mScript.set_textureDot(mDotAllocation);
         mScript.set_textureBeam(mBeamAllocation);
     }
