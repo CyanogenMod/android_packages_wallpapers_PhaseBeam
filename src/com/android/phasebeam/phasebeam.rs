@@ -56,6 +56,11 @@ static float halfScreenHeight;
 static float newOffset = 0.5;
 static float oldOffset = 0.5;
 
+static const float zxParticleSpeed = 0.0000780;
+static const float zxBeamSpeed = 0.00005;
+static const float yzParticleSpeed = 0.00011;
+static const float yzBeamSpeed = 0.000080;
+
 void positionParticles() {
     screenWidth = rsgGetWidth();
     screenHeight = rsgGetHeight();
@@ -107,8 +112,10 @@ void positionParticles() {
 }
 
 int root() {
+    float speedbump;
 
     newOffset = xOffset*2;
+    speedbump = newOffset != oldOffset ? 0.25 : 1.0;
     rsgClearColor(0.0f, 0.f, 0.f,1.0f);
 
     if(newOffset != oldOffset) {
@@ -128,35 +135,32 @@ int root() {
     Particle_t* particle = dotParticles;
 
     for(int i=0; i<numDotParticles; i++) {
-
-        if(newOffset==oldOffset) {
-            if(beam->position.x/beam->position.z > 0.5) {
-                beam->position.x = -1.0;
-            }
-            if(particle->position.x/particle->position.z > 0.5) {
-                particle->position.x = -1.0;
-            }
-
-            if(beam->position.y > 1.05) {
-                beam->position.y = -1.05;
-                beam->position.x = rsRand(-1.25f, 1.25f);
-            } else {
-                beam->position.y = beam->position.y + 0.000160*beam->position.z;
-            }
-            if(particle->position.y > 1.25) {
-                particle->position.y = -1.25;
-                particle->position.x = rsRand(0.0f, 3.0f);
-
-            } else {
-                particle->position.y = particle->position.y + 0.00022*particle->position.z;
-            }
+        if(beam->position.x/beam->position.z > 0.5) {
+            beam->position.x = -1.0;
+        }
+        if(particle->position.x/particle->position.z > 0.5) {
+            particle->position.x = -1.0;
         }
 
-        beam->position.x = beam->position.x + 0.0001*beam->position.z;
+        if(beam->position.y > 1.15) {
+            beam->position.y = -1.15;
+            beam->position.x = rsRand(-1.25f, 1.25f);
+        } else {
+            beam->position.y = beam->position.y + yzBeamSpeed*beam->position.z*speedbump;
+        }
+        if(particle->position.y > 1.25) {
+            particle->position.y = -1.25;
+            particle->position.x = rsRand(0.0f, 3.0f);
+
+        } else {
+            particle->position.y = particle->position.y + yzParticleSpeed*particle->position.z*speedbump;
+        }
+
+        beam->position.x = beam->position.x + zxBeamSpeed*beam->position.z*speedbump;
         beam->offsetX = newOffset;
         beam++;
         particle->offsetX = newOffset;
-        particle->position.x = particle->position.x + 0.0001560*beam->position.z;
+        particle->position.x = particle->position.x + zxParticleSpeed*beam->position.z*speedbump;
         particle++;
     }
 
@@ -171,6 +175,6 @@ int root() {
 
     oldOffset = newOffset;
 
-    return 66;
+    return 66 * speedbump;
 
 }

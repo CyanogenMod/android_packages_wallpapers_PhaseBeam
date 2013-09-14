@@ -108,8 +108,7 @@ public class PhaseBeamWallpaper extends WallpaperService {
         @Override
         public void onOffsetsChanged(float xOffset, float yOffset, float xOffsetStep,
                 float yOffsetStep, int xPixelOffset, int yPixelOffset) {
-            // TODO: Uncomment this once we can work out framerate issues
-            //mWallpaperRS.setOffset(xOffset, yOffset, xPixelOffset, yPixelOffset);
+            mWallpaperRS.setOffset(xOffset, yOffset, xPixelOffset, yPixelOffset);
         }
     }
 }
