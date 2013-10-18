@@ -183,7 +183,7 @@ int root() {
         }
 
         particle->offsetX = newOffset;
-        particle->position.x += zxParticleSpeed * beam->position.z * speedbump;
+        particle->position.x += zxParticleSpeed * particle->position.z * speedbump;
         particle->adjust = adjust;
         particle++;
     }
