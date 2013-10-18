@@ -19,7 +19,6 @@ void main() {
 
     if (adjust.x >= 0.0) {
         // rgb is already greyscale in that case, so r = g = b
-        float value = max(rgb.r, max(rgb.g, rgb.b));
         vec3 hsl = adjust * vec3(1.0, 1.0, rgb.r);
         rgb = hsl2rgb(hsl);
     }
