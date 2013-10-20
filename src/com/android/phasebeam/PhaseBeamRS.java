@@ -125,11 +125,15 @@ public class PhaseBeamRS implements SharedPreferences.OnSharedPreferenceChangeLi
 
     private void makeNewState() {
         Float3 adjust;
-        if (mSharedPref.getBoolean(PhaseBeamSelector.KEY_ENABLED, false)) {
+        if (mSharedPref.getBoolean(PhaseBeamSelector.KEY_ENABLED,
+                    mRes.getBoolean(R.bool.enabled))) {
             adjust = new Float3(
-                    mSharedPref.getFloat(PhaseBeamSelector.KEY_HUE, 0.0f),
-                    mSharedPref.getFloat(PhaseBeamSelector.KEY_SATURATION, 1.0f),
-                    mSharedPref.getFloat(PhaseBeamSelector.KEY_BRIGHTNESS, 1.0f));
+                    mSharedPref.getFloat(PhaseBeamSelector.KEY_HUE,
+                        Float.valueOf(mRes.getString(R.string.hue))),
+                    mSharedPref.getFloat(PhaseBeamSelector.KEY_SATURATION,
+                        Float.valueOf(mRes.getString(R.string.saturation))),
+                    mSharedPref.getFloat(PhaseBeamSelector.KEY_BRIGHTNESS,
+                        Float.valueOf(mRes.getString(R.string.brightness))));
         } else {
             adjust = new Float3(-1.0f, 1.0f, 1.0f);
         }
