@@ -16,10 +16,13 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <bool name="enabled">false</bool>
-
+    <!-- Whether recoloring is enabled by default -->
+    <bool name="recolor_enabled">false</bool>
+    <!-- Default values for the color controls -->
     <item name="hue" format="float" type="string">0.0</item>
     <item name="saturation" format="float" type="string">1.0</item>
     <item name="brightness" format="float" type="string">1.0</item>
+    <!-- Whether horizontal scrolling is enabled -->
+    <bool name="scrolling_enabled">true</bool>
 
 </resources>
