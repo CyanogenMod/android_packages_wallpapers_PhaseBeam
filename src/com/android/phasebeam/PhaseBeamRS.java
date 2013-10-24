@@ -55,6 +55,7 @@ public class PhaseBeamRS implements SharedPreferences.OnSharedPreferenceChangeLi
     private int mDensityDPI;
     private SharedPreferences mSharedPref;
     private Context mContext;
+    private boolean mCanScroll;
 
     boolean mInited = false;
 
@@ -72,6 +73,7 @@ public class PhaseBeamRS implements SharedPreferences.OnSharedPreferenceChangeLi
 
             mWidth = width;
             mHeight = height;
+            mCanScroll = mRes.getBoolean(R.bool.scrolling_enabled);
 
             mDotParticles = new ScriptField_Particle(mRS, DOT_COUNT);
             Mesh.AllocationBuilder smb2 = new Mesh.AllocationBuilder(mRS);
@@ -126,7 +128,7 @@ public class PhaseBeamRS implements SharedPreferences.OnSharedPreferenceChangeLi
     private void makeNewState() {
         Float3 adjust;
         if (mSharedPref.getBoolean(PhaseBeamSelector.KEY_ENABLED,
-                    mRes.getBoolean(R.bool.enabled))) {
+                    mRes.getBoolean(R.bool.recolor_enabled))) {
             adjust = new Float3(
                     mSharedPref.getFloat(PhaseBeamSelector.KEY_HUE,
                         Float.valueOf(mRes.getString(R.string.hue))),
@@ -205,6 +207,7 @@ public class PhaseBeamRS implements SharedPreferences.OnSharedPreferenceChangeLi
             float blue = new Float(values[4]);
             mVertexColors.set_position(i, new Float3(xPos, yPos, 0.0f), false);
             mVertexColors.set_color(i, new Float4(red, green, blue, 1.0f), false);
+            mVertexColors.set_realColor(i, new Float4(red, green, blue, 1.0f), false);
             mVertexColors.set_adjust(i, new Float3(-1.0f, 1.0f, 1.0f), false);
         }
         mVertexColors.copyAll();
@@ -288,7 +291,9 @@ public class PhaseBeamRS implements SharedPreferences.OnSharedPreferenceChangeLi
     }
 
     public void setOffset(float xOffset, float yOffset, int xPixels, int yPixels) {
-        mScript.set_xOffset(xOffset);
+        if (mCanScroll) {
+            mScript.set_xOffset(xOffset);
+        }
     }
 
     public void resize(int w, int h) {
