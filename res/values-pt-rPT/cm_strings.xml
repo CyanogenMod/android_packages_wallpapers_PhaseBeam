@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Justér farver</string>
-  <string name="color_label">Farve</string>
-  <string name="saturation_label">Farvemætning</string>
-  <string name="brightness_label">Lysstyrke</string>
+  <string name="enable_recoloring">Ajustar cores do feixe</string>
+  <string name="color_label">Côr</string>
+  <string name="saturation_label">Saturação</string>
+  <string name="brightness_label">Brilho</string>
 </resources>

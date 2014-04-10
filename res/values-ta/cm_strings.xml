@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Justér farver</string>
-  <string name="color_label">Farve</string>
-  <string name="saturation_label">Farvemætning</string>
-  <string name="brightness_label">Lysstyrke</string>
+  <string name="enable_recoloring">கற்றை வண்ணங்களை சரியாக்கு</string>
+  <string name="color_label">வண்ணம்</string>
+  <string name="saturation_label">நிறைசெறிவு</string>
+  <string name="brightness_label">பிரகாசம்</string>
 </resources>

@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Justér farver</string>
-  <string name="color_label">Farve</string>
-  <string name="saturation_label">Farvemætning</string>
-  <string name="brightness_label">Lysstyrke</string>
+  <string name="enable_recoloring">Säädä säteen värejä</string>
+  <string name="color_label">Väri</string>
+  <string name="saturation_label">Kylläisyys</string>
+  <string name="brightness_label">Kirkkaus</string>
 </resources>

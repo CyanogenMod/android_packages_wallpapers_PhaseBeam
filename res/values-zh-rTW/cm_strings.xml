@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Justér farver</string>
-  <string name="color_label">Farve</string>
-  <string name="saturation_label">Farvemætning</string>
-  <string name="brightness_label">Lysstyrke</string>
+  <string name="enable_recoloring">調整光束顏色</string>
+  <string name="color_label">顏色</string>
+  <string name="saturation_label">飽和度</string>
+  <string name="brightness_label">亮度</string>
 </resources>
