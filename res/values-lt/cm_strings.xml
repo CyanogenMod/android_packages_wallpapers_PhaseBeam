@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">调整光束颜色</string>
-  <string name="color_label">颜色</string>
-  <string name="saturation_label">饱和度</string>
-  <string name="brightness_label">亮度</string>
+  <string name="enable_recoloring">Koreguoti švytėjimo spalvas</string>
+  <string name="color_label">Spalva</string>
+  <string name="saturation_label">Sotis</string>
+  <string name="brightness_label">Ryškumas</string>
 </resources>

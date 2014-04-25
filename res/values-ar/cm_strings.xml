@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">调整光束颜色</string>
-  <string name="color_label">颜色</string>
-  <string name="saturation_label">饱和度</string>
-  <string name="brightness_label">亮度</string>
+  <string name="enable_recoloring">ضبط شعاع الألوان</string>
+  <string name="color_label">لون</string>
+  <string name="saturation_label">التشبع</string>
+  <string name="brightness_label">السطوع</string>
 </resources>
