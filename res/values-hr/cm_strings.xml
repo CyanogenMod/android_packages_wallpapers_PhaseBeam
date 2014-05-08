@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Justera färgbalans</string>
-  <string name="color_label">Färg</string>
-  <string name="saturation_label">Mättnad</string>
-  <string name="brightness_label">Ljusstyrka</string>
+  <string name="enable_recoloring">Podesi beam boju</string>
+  <string name="color_label">Boja</string>
+  <string name="saturation_label">Saturacija</string>
+  <string name="brightness_label">Svjetlina</string>
 </resources>
