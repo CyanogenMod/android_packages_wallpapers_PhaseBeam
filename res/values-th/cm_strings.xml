@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Kohanda alusvärve</string>
-  <string name="color_label">Värv</string>
-  <string name="saturation_label">Küllastus</string>
-  <string name="brightness_label">Heledus</string>
+  <string name="enable_recoloring">ปรับสีบีม</string>
+  <string name="color_label">สี</string>
+  <string name="saturation_label">ความอิ่มตัว</string>
+  <string name="brightness_label">ความสว่าง</string>
 </resources>
