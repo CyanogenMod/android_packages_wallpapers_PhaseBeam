@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Регулиши сноп боја</string>
-  <string name="color_label">Боја</string>
-  <string name="saturation_label">Засићење</string>
-  <string name="brightness_label">Осветљење</string>
+  <string name="enable_recoloring">دەستکاری ڕەنگەکان</string>
+  <string name="color_label">ڕەنگ</string>
+  <string name="saturation_label">تێرایی</string>
+  <string name="brightness_label">ڕوناکی </string>
 </resources>
