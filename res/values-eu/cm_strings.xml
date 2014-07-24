@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">빔 색상 조정</string>
-  <string name="color_label">색상</string>
-  <string name="saturation_label">채도</string>
-  <string name="brightness_label">밝기</string>
+  <string name="enable_recoloring">Koloreak doitu</string>
+  <string name="color_label">Kolorea</string>
+  <string name="saturation_label">Saturazioa</string>
+  <string name="brightness_label">Diztira</string>
 </resources>
