@@ -19,5 +19,5 @@
   <string name="enable_recoloring">Регулиши сноп боја</string>
   <string name="color_label">Боја</string>
   <string name="saturation_label">Засићење</string>
-  <string name="brightness_label">Осветљење</string>
+  <string name="brightness_label">Осветљеност</string>
 </resources>
