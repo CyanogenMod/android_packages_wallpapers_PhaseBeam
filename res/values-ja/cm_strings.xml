@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">ビームカラーの調整</string>
+  <string name="enable_recoloring">ビームカラーを調整</string>
   <string name="color_label">色相</string>
   <string name="saturation_label">彩度</string>
   <string name="brightness_label">明度</string>
