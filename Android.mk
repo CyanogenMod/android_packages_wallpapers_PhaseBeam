@@ -23,7 +23,7 @@ LOCAL_SRC_FILES := $(call all-subdir-java-files) $(call all-renderscript-files-u
 
 LOCAL_PACKAGE_NAME := PhaseBeam
 LOCAL_CERTIFICATE := shared
-LOCAL_SDK_VERSION := 17
+LOCAL_RENDERSCRIPT_TARGET_API := 17
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.cfg
 
