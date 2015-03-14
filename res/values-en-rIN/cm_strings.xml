@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Koreguoti švytėjimo spalvas</string>
-  <string name="color_label">Spalva</string>
-  <string name="saturation_label">Sodrumas</string>
-  <string name="brightness_label">Šviesumas</string>
+  <string name="enable_recoloring">Adjust beam colors</string>
+  <string name="color_label">Colour</string>
+  <string name="saturation_label">Saturation</string>
+  <string name="brightness_label">Brightness</string>
 </resources>
