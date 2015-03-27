@@ -7,7 +7,9 @@
 
     <uses-feature android:name="android.software.live_wallpaper" />
 
-    <application android:icon="@drawable/icon" android:label="@string/wallpaper_label">
+    <application
+        android:icon="@mipmap/ic_launcher_wallpaper"
+        android:label="@string/wallpaper_label">
         <service
             android:name=".PhaseBeamWallpaper"
             android:label="@string/wallpaper_label"
