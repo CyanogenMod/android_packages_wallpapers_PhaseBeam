@@ -16,8 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Koloreak doitu</string>
   <string name="color_label">Kolorea</string>
   <string name="saturation_label">Saturazioa</string>
-  <string name="brightness_label">Diztira</string>
+  <string name="brightness_label">Distira</string>
 </resources>
