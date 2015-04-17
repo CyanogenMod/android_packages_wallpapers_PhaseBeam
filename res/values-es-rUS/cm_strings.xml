@@ -16,7 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="color_label">Kolorea</string>
-  <string name="saturation_label">Saturazioa</string>
-  <string name="brightness_label">Distira</string>
+  <string name="enable_recoloring">Ajustar los colores</string>
+  <string name="color_label">Color</string>
+  <string name="saturation_label">Saturación</string>
+  <string name="brightness_label">Brillo</string>
 </resources>
