@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Şüa rənglərini nizamla</string>
-  <string name="color_label">Rəng</string>
-  <string name="saturation_label">Doydurma</string>
-  <string name="brightness_label">Parlaqlıq</string>
+  <string name="enable_recoloring">ಕಿರಣ ಬಣ್ಣಗಳನ್ನು ಸರಿಹೊಂದಿಸಿ</string>
+  <string name="color_label">ಬಣ್ಣ</string>
+  <string name="saturation_label">ಸ್ಯಾಚುರೇಶನ್</string>
+  <string name="brightness_label">ಪ್ರಖರತೆ</string>
 </resources>
