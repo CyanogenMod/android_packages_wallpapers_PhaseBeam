@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">تنظیم رنگ پرتو</string>
-  <string name="color_label">رنگ</string>
-  <string name="saturation_label">اشباع</string>
-  <string name="brightness_label">روشنایی</string>
+  <string name="enable_recoloring">ಕಿರಣ ಬಣ್ಣಗಳನ್ನು ಸರಿಹೊಂದಿಸಿ</string>
+  <string name="color_label">ಬಣ್ಣ</string>
+  <string name="saturation_label">ಸ್ಯಾಚುರೇಶನ್</string>
+  <string name="brightness_label">ಪ್ರಖರತೆ</string>
 </resources>
