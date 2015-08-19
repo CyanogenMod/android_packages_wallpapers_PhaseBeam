@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">تنظیم رنگ پرتو</string>
-  <string name="color_label">رنگ</string>
-  <string name="saturation_label">اشباع</string>
-  <string name="brightness_label">روشنایی</string>
+  <string name="enable_recoloring">Ĝustigi koloraron</string>
+  <string name="color_label">Koloro</string>
+  <string name="saturation_label">Intenseco</string>
+  <string name="brightness_label">Brileco</string>
 </resources>
