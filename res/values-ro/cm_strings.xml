@@ -19,5 +19,5 @@
   <string name="enable_recoloring">Ajustați culoarea razei</string>
   <string name="color_label">Culoare</string>
   <string name="saturation_label">Saturația</string>
-  <string name="brightness_label">Luminozitatea</string>
+  <string name="brightness_label">Luminozitate</string>
 </resources>
