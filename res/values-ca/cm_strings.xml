@@ -19,5 +19,5 @@
   <string name="enable_recoloring">Ajusta els colors del feix</string>
   <string name="color_label">Color</string>
   <string name="saturation_label">Saturació</string>
-  <string name="brightness_label">Brillantor</string>
+  <string name="brightness_label">Lluminositat</string>
 </resources>
