@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Beam rəngləri nizamla</string>
+  <string name="enable_recoloring">Şüa rənglərini nizamla</string>
   <string name="color_label">Rəng</string>
   <string name="saturation_label">Doydurma</string>
   <string name="brightness_label">Parlaqlıq</string>

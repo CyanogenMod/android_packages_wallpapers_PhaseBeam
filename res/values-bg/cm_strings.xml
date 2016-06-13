@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources>
-  <string name="enable_recoloring">Atur warna balok</string>
-  <string name="color_label">Warna</string>
-  <string name="saturation_label">Kejenuhan</string>
-  <string name="brightness_label">Kecerahan</string>
+  <string name="enable_recoloring">Настройка на цветовете</string>
+  <string name="color_label">Цвят</string>
+  <string name="saturation_label">Насищане</string>
+  <string name="brightness_label">Яркост</string>
 </resources>
