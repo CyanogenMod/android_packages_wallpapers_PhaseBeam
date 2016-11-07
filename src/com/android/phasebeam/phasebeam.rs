@@ -3,8 +3,6 @@
 #pragma rs java_package_name(com.android.phasebeam)
 
 #include "rs_graphics.rsh"
-#pragma stateVertex(parent);
-#pragma stateStore(parent);
 
 rs_allocation textureDot;
 rs_allocation textureBeam;
